@@ -1,49 +1,5 @@
 window.onload = showNewGame();
 
-function returnRow(cell) {
-	return Math.floor(cell / 9);
-}
-function returnCol(cell) {
-	return cell % 9;
-}
- 
-function returnBlock(cell) {
-	return Math.floor(returnRow(cell) / 3) * 3 + Math.floor(returnCol(cell) / 3);
-}
-// Kiểm tra nếu trong hàng đã có số đưọc truyền vào thì trả về false
-function isPossibleRow(number,row,sudoku) {
-	for (var i=0; i<=8; i++) {
-		if (sudoku[row*9+i] == number) { 
-			return false;
-		}
-	}
-	return true;
-}
-// kiểm tra thỏa mãn cột
-function isPossibleCol(number,col,sudoku) {
-	for (var i=0; i<=8; i++) {
-		if (sudoku[col+9*i] == number) {
-			return false;
-		}
-	}
-	return true;
-}
-// kiểm tra trong khối, nếu đã có số đưọc truyền thì trả về false
-function isPossibleBlock(number,block,sudoku) {
-	for (var i=0; i<9; i++) {
-		if (sudoku[Math.floor(block/3)*27+i%3+9*Math.floor(i/3)+3*(block%3)] == number) {
-			return false;
-		}
-	}
-	return true;
-}
-// KIÊM tra số truyền vào thỏa mãn 3 điều kiện về hàng, cột và khối
-function isPossibleNumber(cell,number,sudoku) {
-	var row = returnRow(cell);
-	var col = returnCol(cell);
-	var block = returnBlock(cell);
-	return isPossibleRow(number,row,sudoku) && isPossibleCol(number,col,sudoku) && isPossibleBlock(number,block,sudoku);
-}
 // Hàm kiểm tra xem trong mảng có 2 phần tử giống nhau không
 function checkSameValueinArr(arrTemp){
 	var count = 0;
@@ -98,6 +54,59 @@ function checkBlockBeforeSolve(block,sudoku){
 	return check;
 }
 
+function returnRow(cell) {
+	return Math.floor(cell / 9);
+}
+function returnCol(cell) {
+	return cell % 9;
+}
+ 
+function returnBlock(cell) {
+	return Math.floor(returnRow(cell) / 3) * 3 + Math.floor(returnCol(cell) / 3);
+}
+// Kiểm tra nếu trong hàng đã có số đưọc truyền vào thì trả về false
+function isPossibleRow(number,row,sudoku) {
+	for (var i=0; i<=8; i++) {
+		if (sudoku[row*9+i] == number) { 
+			return false;
+		}
+	}
+	return true;
+}
+// kiểm tra thỏa mãn cột
+function isPossibleCol(number,col,sudoku) {
+	for (var i=0; i<=8; i++) {
+		if (sudoku[col+9*i] == number) {
+			return false;
+		}
+	}
+	return true;
+}
+// kiểm tra trong khối, nếu đã có số đưọc truyền thì trả về false
+function isPossibleBlock(number,block,sudoku) {
+	for (var i=0; i<9; i++) {
+		if (sudoku[Math.floor(block/3)*27+i%3+9*Math.floor(i/3)+3*(block%3)] == number) {
+			return false;
+		}
+	}
+	return true;
+}
+// KIÊM tra số truyền vào thỏa mãn 3 điều kiện về hàng, cột và khối
+function isPossibleNumber(cell,number,sudoku) {
+	var row = returnRow(cell);
+	var col = returnCol(cell);
+	var block = returnBlock(cell);
+	return isPossibleRow(number,row,sudoku) && isPossibleCol(number,col,sudoku) && isPossibleBlock(number,block,sudoku);
+}
+function checkCanbeSolve(){
+	var unSolved = getUnSolvedSudoku();
+	for(let i = 0; i< 9; i++){
+		if(checkRowBeforeSolve(i, unSolved) == false || checkColBeforeSolve(i, unSolved) == false || checkBlockBeforeSolve(i, unSolved) == false){
+			return false;
+		}
+	}
+	return true;
+}
 function isCorrectRow(row,sudoku) {
 	var rightSequence = new Array(1,2,3,4,5,6,7,8,9);
 	var rowTemp= new Array();
@@ -249,6 +258,8 @@ function showNewGame(){
 
 	document.getElementById('mess4').classList.add('hide');
 	document.getElementById('mess5').classList.add('hide');
+	document.getElementById('mess7').classList.add('hide');
+	document.getElementById('mess6').classList.add('hide');
 
 	clearMess();
 	
@@ -298,16 +309,11 @@ function getUnSolvedSudoku(){
 	}
 	return unSolved;
 }
-function checkCanbeSolve(){
-	var unSolved = getUnSolvedSudoku();
-	for(let i = 0; i< 9; i++){
-		if(checkRowBeforeSolve(i, unSolved) == false || checkColBeforeSolve(i, unSolved) == false || checkBlockBeforeSolve(i, unSolved) == false){
-			return false;
-		}
-	}
-}
+
 function check(){
 	document.getElementById('mess').classList.add('hide');
+	document.getElementById('mess7').classList.add('hide');
+	document.getElementById('mess6').classList.add('hide');
 	// console.log('nam');
 	var check1 = true;
 	var check2 = false;
@@ -344,7 +350,7 @@ function check(){
 		}
 	}
 	
-	console.log(check2);
+	// console.log(check2);
 	if(check1 == true && check2 == true){
 		document.getElementById('mess1').classList.add('hide');
 		document.getElementById('mess2').classList.add('hide');
@@ -358,8 +364,8 @@ function showSolve(){
 }
 
 var unSolvedSudoku = [];
-var saved = [];
-var savedSudoku = [];
+var saved = new Array();
+var savedSudoku = new Array();
 var nextMove;
 var whatToTry;
 var attempt;
@@ -370,10 +376,13 @@ function stepSolve(){
 	document.getElementById('continue').disabled = true;
 	document.getElementById('create_game').disabled = true;
 
+	document.getElementById('mess7').classList.add('hide');
+	document.getElementById('mess6').classList.add('hide');
+	
 	pause = false;	
 	unSolvedSudoku = getUnSolvedSudoku();
-	var checkCanbeSolve = checkCanbeSolve();
-	if(checkCanbeSolve == false) {
+	var check = checkCanbeSolve();
+	if(check == false) {
 		document.getElementById('mess6').classList.remove('hide');
 		return false;
 	}
@@ -394,6 +403,10 @@ function loop(time){
 			nextMove = saved.pop(); 
 			unSolvedSudoku = savedSudoku.pop();
 		}
+		if(nextMove == undefined) {
+			document.getElementById('mess7').classList.remove('hide');
+			return false;
+		}
 		whatToTry = nextRandom(nextMove);  // trả về vị trí với ít lựa chọn nhất
 		attempt = determineRandomPossibleValue(nextMove,whatToTry); // chọn một số bất kì
 		if (nextMove[whatToTry].length > 1) { // nếu mảng lựa chọn có nhiều hơn 1 số
@@ -405,12 +418,12 @@ function loop(time){
 		
 		document.getElementById(whatToTry.toString()).value = unSolvedSudoku[whatToTry];
 		// console.log(whatToTry+'-'+ attempt);
-		if(!isSolvedSudoku(unSolvedSudoku) && pause == false) { 
+		if(!isSolvedSudoku(unSolvedSudoku) && pause == false && nextMove != undefined) { 
 		 	loop(time);
 		 	document.getElementById('sleepTime').disabled = true;
 			document.getElementById('reset').disabled = true;
 			document.getElementById('solve').disabled = true;
-			// document.getElementById('check').disabled = true;
+			document.getElementById('create_game').disabled = true;
 
 		}else if(isSolvedSudoku(unSolvedSudoku)){
 			document.getElementById('reset').disabled = false;
@@ -437,6 +450,9 @@ function reset(){
 	document.getElementById('pause').disabled = true;
 	document.getElementById('continue').disabled = true;
 	document.getElementById('solve').disabled = false;
+
+	document.getElementById('mess7').classList.add('hide');
+	document.getElementById('mess6').classList.add('hide');
 
 	clearMess();
 }
