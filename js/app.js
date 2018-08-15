@@ -389,6 +389,7 @@ function stepSolve(){
 
 	time = document.getElementById('sleepTime').value;
 	time = Number(time)*1000;
+	
 	if(time < 0 || isNaN(time)){
 		document.getElementById('mess5').classList.remove('hide');
 		return false;
@@ -487,3 +488,4 @@ function isNumber2(evt) {
     }
     return true;
 }
+// console.log(Number('3+'));

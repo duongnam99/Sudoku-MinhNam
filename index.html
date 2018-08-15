@@ -201,31 +201,35 @@
                     <div class="col-md-12">
                         <div class="cube1">
                             <label for="cellCount">Số ô hiển thị trước:</label>
-                            <input type="number" id="cellCount" value="35" onkeypress="return isNumber2(event)">
+                            <input type="text" id="cellCount" value="35" onkeypress="return isNumber2(event)">
                             <button class="btn btn-outline-primary" id="create_game" onclick="showNewGame()">New Game</button>
                             <button class="btn btn-outline-info" id="check" onclick="check()">Check</button>
                             
                         </div>
                         <div class="cube2">
                             <label for="sleepTime">Thời gian nghỉ:</label>
-                            <input type="number" id="sleepTime" value="0" onkeypress="return isNumber1(event)">
+                            <input type="text" id="sleepTime" value="0" onkeypress="return isNumber1(event)">
                             <button class="btn btn-outline-success" id="solve" onclick="stepSolve()">Solve</button>
                             <button class="btn btn-outline-danger" id="reset" onclick="reset()">Reset</button>
-                            <h6>Nhấn <span class="badge badge-warning">pause</span> để dừng quá trình giải và tạo game mới </h6>
-                            <h6>Nhấn <span class="badge badge-danger">reset</span> để về ban đầu</h6>
+                          
                         </div>
                         <div class="cube3 ">
                             <button class="btn btn-outline-warning" id="pause" onclick="Pause()">Pause</button>
                             <button class="btn btn-outline-secondary" id="continue" onclick="Continue()">Continue</button>
-                            <button class="btn btn-outline-secondary" id="get" onclick="getUnSolvedSudoku()">get</button>
-                           <!--  <span class="badge badge-danger visible">Danger</span> -->
+
+                            <h6>Nhấn <span class="badge badge-warning">pause</span> để dừng quá trình giải và tạo game mới </h6>
+                            <h6>Nhấn <span class="badge badge-danger">reset</span> để về ban đầu</h6>
+                            <h6>Nhấn <span class="badge badge-success">solve</span> để giải / giải tiếp</h6>
+
                            <h3 class="hide" id="mess"><span class="badge badge-danger">Đã giải xong !</span> </h3>
                            <h5 class="hide" id="mess1"><span class="badge badge-info">Bạn phải nhập số nguyên dương có 1 chữ số và nhập đủ các ô</span> </h5>
                            <h5 class="hide" id="mess2"><span class="badge badge-warning">Bài giải không đúng!</span> </h5>
                            <h5 class="hide" id="mess3"><span class="badge badge-success">Chúc mừng, bài giải đúng !!!</span> </h5>
-                           <h5 class="hide" id="mess4"><span class="badge badge-danger">Số ô phải từ 1 đến 81 !!!</span> </h5>
+                           <h5 class="hide" id="mess4"><span class="badge badge-danger">Bạn chưa nhập đúng định dạng, số ô phải từ 1 đến 81 !</span> </h5>
                            <h5 class="hide" id="mess5"><span class="badge badge-info">Thời gian chưa đúng định dạng!</span> </h5>
-                           <h3 class="hide" id="mess6"><span class="badge badge-warning">Không thể giải!!!</span> </h3>
+                           <h3 class="hide" id="mess6"><span class="badge badge-warning">Không thể giải tiếp!</span> </h3>
+                           <h3 class="hide" id="mess7"><span class="badge badge-warning">Không thể giải được!!!</span> </h3>
+                           
                         </div>
                     </div>
                 </div>
