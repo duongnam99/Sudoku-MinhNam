@@ -7,7 +7,8 @@
 - [đề bài]( https://github.com/mirahman/PHP-Data-Structure-and-Algorithms/blob/master/Algorithms/Recursion-DP-Others/BacktrackingSudoku.php)
 - [bài làm](https://duongnam99.github.io/Sudoku-MinhNam/)
 
-## Kiến thức nắm đưọc
+## Kiến thức nắm được
+- Vòn lặp gọi hàm liên tục
 - Viết, thao tác với hàm
 - Ôn lại scope của biến...
 
