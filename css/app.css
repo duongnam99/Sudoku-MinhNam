@@ -3,6 +3,9 @@
 	height: 50px;
 	font-weight: bold;
 }
+.sudoku {
+	margin-bottom: 20px;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
@@ -35,4 +38,13 @@ tr {
 }
 .hide {
 	display: none;
+}
+@media only screen and (max-width: 992px) {
+    .square .cell {
+    	width: 30px;
+    	height: 30px;
+    }
+    .right {
+    	height: 700px;
+    }
 }
