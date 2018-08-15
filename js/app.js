@@ -378,6 +378,7 @@ function stepSolve(){
 
 	document.getElementById('mess7').classList.add('hide');
 	document.getElementById('mess6').classList.add('hide');
+	document.getElementById('mess5').classList.add('hide');
 	
 	pause = false;	
 	unSolvedSudoku = getUnSolvedSudoku();
@@ -389,7 +390,7 @@ function stepSolve(){
 
 	time = document.getElementById('sleepTime').value;
 	time = Number(time)*1000;
-	
+
 	if(time < 0 || isNaN(time)){
 		document.getElementById('mess5').classList.remove('hide');
 		return false;
@@ -406,6 +407,7 @@ function loop(time){
 		}
 		if(nextMove == undefined) {
 			document.getElementById('mess7').classList.remove('hide');
+			document.getElementById('create_game').disabled = false;
 			return false;
 		}
 		whatToTry = nextRandom(nextMove);  // trả về vị trí với ít lựa chọn nhất
@@ -454,6 +456,7 @@ function reset(){
 
 	document.getElementById('mess7').classList.add('hide');
 	document.getElementById('mess6').classList.add('hide');
+	document.getElementById('mess5').classList.add('hide');
 
 	clearMess();
 }
