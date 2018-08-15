@@ -434,10 +434,10 @@ function loop(time){
 			document.getElementById('sleepTime').disabled = false;
 			document.getElementById('create_game').disabled = false;
 			document.getElementById('mess').classList.remove('hide');
-			document.getElementById('mess1').classList.remove('hide');
-			document.getElementById('mess5').classList.remove('hide');
-			document.getElementById('mess6').classList.remove('hide');
-			document.getElementById('mess7').classList.remove('hide');
+			document.getElementById('mess1').classList.add('hide');
+			document.getElementById('mess5').classList.add('hide');
+			document.getElementById('mess6').classList.add('hide');
+			document.getElementById('mess7').classList.add('hide');
 
 		}else if(pause == true) {
 			document.getElementById('sleepTime').disabled = true;
