@@ -408,6 +408,7 @@ function loop(time){
 		if(nextMove == undefined) {
 			document.getElementById('mess7').classList.remove('hide');
 			document.getElementById('create_game').disabled = false;
+
 			return false;
 		}
 		whatToTry = nextRandom(nextMove);  // trả về vị trí với ít lựa chọn nhất
@@ -453,6 +454,7 @@ function reset(){
 	document.getElementById('pause').disabled = true;
 	document.getElementById('continue').disabled = true;
 	document.getElementById('solve').disabled = false;
+	document.getElementById('sleepTime').disabled = false;
 
 	document.getElementById('mess7').classList.add('hide');
 	document.getElementById('mess6').classList.add('hide');
