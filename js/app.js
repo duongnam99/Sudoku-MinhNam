@@ -407,9 +407,10 @@ function loop(time){
 			nextMove = saved.pop(); 
 			unSolvedSudoku = savedSudoku.pop();
 		}
-		if(nextMove == undefined) {
+		if(nextMove == undefined) { 
 			document.getElementById('mess7').classList.remove('hide');
 			document.getElementById('create_game').disabled = false;
+			document.getElementById('reset').disabled = false;
 
 			return false;
 		}
@@ -432,9 +433,13 @@ function loop(time){
 			document.getElementById('create_game').disabled = true;
 
 		}else if(isSolvedSudoku(unSolvedSudoku)){
+			for(i=0;i<81;i++){
+				document.getElementById(i.toString()).value = unSolvedSudoku[i];
+			}
 			document.getElementById('reset').disabled = false;
 			document.getElementById('sleepTime').disabled = false;
 			document.getElementById('create_game').disabled = false;
+			// console.log(unSolvedSudoku);
 			document.getElementById('mess').classList.remove('hide');
 			document.getElementById('mess1').classList.add('hide');
 			document.getElementById('mess5').classList.add('hide');
