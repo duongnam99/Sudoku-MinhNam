@@ -385,6 +385,8 @@ function stepSolve(){
 	var check = checkCanbeSolve();
 	if(check == false) {
 		document.getElementById('mess6').classList.remove('hide');
+		document.getElementById('create_game').disabled = false;
+
 		return false;
 	}
 
